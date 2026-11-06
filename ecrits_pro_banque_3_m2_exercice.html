@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Exercice — Le bon écrit, le bon objectif</title>
+<style>
+
+:root{--prune:#8C1E70;--prune-fonce:#5E1349;--prune-clair:#F4E6EE;--accent:#C77BAA;
+ --vert:#283C28;--gris:#3C3C3C;--gris-moyen:#8A7A85;--filet:#E8DCE5;--creme:#FAF6F8;
+ --ok:#2F7A4F;--ko:#B23B3B;--amb:#B5852A;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--creme);color:var(--gris);
+ font-family:"Nunito","Segoe UI",Helvetica,Arial,sans-serif;font-size:16px;line-height:1.62}
+.wrap{max-width:900px;margin:0 auto;padding:0 18px 60px}
+header.bandeau{background:var(--prune-fonce);color:#fff;padding:18px 0;border-bottom:4px solid var(--accent)}
+header.bandeau .wrap{padding-bottom:0}
+.chapitre{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:#EAD3E3}
+.chapitre span{color:var(--accent);margin:0 6px}
+h1{font-family:Georgia,"Times New Roman",serif;font-size:27px;line-height:1.25;margin:8px 0 4px;color:#fff}
+.sous{color:#EAD3E3;font-size:14.5px;margin:0}
+h2{font-family:Georgia,"Times New Roman",serif;font-size:20px;color:var(--prune-fonce);
+ margin:34px 0 0;padding-bottom:8px;border-bottom:2px solid var(--filet)}
+h2 .num{color:var(--accent);margin-right:8px}
+h3{font-size:15px;color:var(--vert);margin:20px 0 8px;letter-spacing:.02em}
+.carte{background:#fff;border:1px solid var(--filet);border-radius:10px;padding:20px 22px;margin:18px 0;
+ box-shadow:0 1px 2px rgba(94,19,73,.05)}
+.enc{background:var(--prune-clair);border-left:5px solid var(--prune);padding:14px 18px;
+ border-radius:0 8px 8px 0;margin:18px 0;font-size:15.2px}
+.enc .t{display:block;font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;
+ font-weight:800;color:var(--prune-fonce);margin-bottom:6px}
+.enc.al{background:#FBF4F4;border-left-color:var(--ko)}.enc.al .t{color:var(--ko)}
+.enc.ci{background:#FCF8F0;border-left-color:var(--amb)}.enc.ci .t{color:#8A6418}
+.situ{background:#FCF9FB;border:1px dashed var(--filet);border-radius:8px;padding:16px 18px;margin:16px 0;font-size:15.2px}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0}
+.duo>div{background:#fff;border:1px solid var(--filet);border-radius:9px;padding:15px 17px;font-size:14.8px}
+.duo .h{font-weight:800;color:var(--prune-fonce);margin-bottom:7px;font-size:14.5px}
+.tri{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}
+.tri>div{background:#fff;border:1px solid var(--filet);border-radius:9px;padding:14px 15px;font-size:14.3px}
+.quad{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0}
+.quad>div{background:#fff;border:1px solid var(--filet);border-radius:9px;padding:12px 13px;font-size:13.6px}
+.quad .h{font-weight:800;color:var(--prune-fonce);margin-bottom:6px;font-size:13px;
+ text-transform:uppercase;letter-spacing:.04em}
+.tri .h{font-weight:800;color:var(--prune-fonce);margin-bottom:6px;font-size:13.5px;
+ text-transform:uppercase;letter-spacing:.05em}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14.8px;background:#fff}
+th,td{border:1px solid var(--filet);padding:9px 12px;text-align:left}
+thead th{background:var(--prune-clair);color:var(--prune-fonce);font-size:13.5px}
+tbody th{font-weight:600;color:var(--gris)}
+td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.tot td,tr.tot th{background:#FBF3F8;font-weight:800;color:var(--prune-fonce)}
+.dl{display:inline-flex;align-items:center;gap:9px;background:var(--prune);color:#fff;text-decoration:none;
+ padding:11px 20px;border-radius:8px;font-weight:700;font-size:15px;margin:20px 0 4px}
+.dl:hover{background:var(--prune-fonce)}
+ol.q{padding-left:0;list-style:none;counter-reset:q}
+ol.q>li{margin:16px 0;padding-left:38px;position:relative}
+ol.q>li::before{counter-increment:q;content:counter(q);position:absolute;left:0;top:1px;
+ width:26px;height:26px;border-radius:50%;background:var(--prune-clair);color:var(--prune-fonce);
+ font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center}
+b,strong{color:var(--vert)}
+footer{text-align:center;font-size:12.5px;color:var(--gris-moyen);padding:26px 18px 12px;
+ border-top:1px solid var(--filet);margin-top:44px}
+@media(max-width:860px){.quad{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.duo,.tri,.quad{grid-template-columns:1fr}h1{font-size:22px}}
+@media print{body{background:#fff}.dl{display:none}header.bandeau{background:#5E1349 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+
+
+.champ{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:11px 0;
+ padding:11px 13px;background:#FCF9FB;border:1px solid var(--filet);border-radius:9px}
+.champ .lb{flex:1 1 340px;font-size:15px}
+.champ .pts{font-size:12px;color:var(--gris-moyen);white-space:nowrap}
+input.num,select.ch{font-family:inherit;font-size:15px;padding:9px 12px;border:1.5px solid var(--filet);
+ border-radius:8px;background:#fff;color:var(--gris);min-width:210px}
+input.num{min-width:150px;text-align:right;font-variant-numeric:tabular-nums}
+input.num:focus,select.ch:focus{outline:none;border-color:var(--prune)}
+input.num:disabled,select.ch:disabled{background:#F1EBEF;color:var(--gris-moyen);cursor:not-allowed}
+.champ.just{border-color:#BFE0CC;background:#F3FAF5}
+.champ.faux{border-color:#EFC9C9;background:#FDF5F5}
+.verdict{font-weight:800;font-size:13px;white-space:nowrap}
+.verdict.ok{color:var(--ok)}.verdict.ko{color:var(--ko)}
+.btn{display:inline-flex;align-items:center;gap:9px;background:var(--prune);color:#fff;border:0;
+ padding:12px 22px;border-radius:8px;font-family:inherit;font-weight:800;font-size:15px;cursor:pointer}
+.btn:hover{background:var(--prune-fonce)}
+.btn:disabled{background:#C9B7C3;cursor:not-allowed}
+.btn.sec{background:#fff;color:var(--prune-fonce);border:1.5px solid var(--filet)}
+.btn.sec:hover{background:var(--prune-clair)}
+.barre{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:16px}
+.fige{display:inline-block;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;font-weight:800;
+ color:var(--prune-fonce);background:var(--prune-clair);padding:6px 11px;border-radius:20px}
+.corr{display:none;margin-top:16px}.corr.on{display:block}
+.score{display:flex;flex-wrap:wrap;gap:18px;align-items:baseline;
+ background:var(--prune-fonce);color:#fff;border-radius:10px;padding:18px 22px;margin:18px 0}
+.score .gros{font-family:Georgia,serif;font-size:32px;font-weight:700;color:#fff}
+.score .lib{font-size:14px;color:#EAD3E3}
+.opt{display:block;background:#fff;border:1.5px solid var(--filet);border-radius:9px;
+ padding:11px 14px;margin:8px 0;font-size:15px;cursor:pointer}
+.opt:hover{border-color:var(--accent)}
+.opt input{margin-right:10px}
+.opt.sel{border-color:var(--prune);background:var(--prune-clair)}
+.opt.bonne{border-color:var(--ok);background:#F3FAF5}
+.opt.mauvaise{border-color:var(--ko);background:#FDF5F5}
+.opt.verrou{cursor:not-allowed}
+.qbloc{background:#fff;border:1px solid var(--filet);border-radius:10px;padding:18px 20px;margin:16px 0}
+.qnum{font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;font-weight:800;color:var(--accent)}
+.qth{display:inline-block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:800;
+ color:var(--prune-fonce);background:var(--prune-clair);padding:4px 9px;border-radius:20px;margin-left:8px}
+.qen{font-size:16.5px;font-weight:700;color:var(--vert);margin:8px 0 4px}
+.multi{font-size:12.5px;color:var(--gris-moyen);font-style:italic;margin-bottom:6px}
+.prog{height:8px;background:var(--filet);border-radius:20px;overflow:hidden;margin:14px 0 4px}
+.prog i{display:block;height:100%;background:var(--prune);width:0;transition:width .25s}
+.sticky{position:sticky;bottom:0;background:var(--creme);padding:12px 0;border-top:1px solid var(--filet)}
+@media print{.btn,.sticky{display:none}}
+
+
+.phrase{flex:1 1 360px;font-size:15.5px}
+.phrase .trou{display:inline-block;min-width:70px;border-bottom:2px dotted var(--accent);text-align:center;color:var(--accent);font-weight:800}
+select.ch{min-width:170px}
+</style></head>
+<body>
+<header class="bandeau"><div class="wrap">
+ <div class="chapitre">Écrits professionnels · banque 3/5 <span>/</span> Module 2</div><h1>Le bon écrit, le bon objectif</h1><p class="sous">Exercice d'entraînement — 3 ateliers, correction immédiate · 18 points</p>
+</div></header>
+<div class="wrap">
+
+<div class="carte">
+<div class="enc"><span class="t">CE QUE VOUS ALLEZ FAIRE</span>3 ateliers, du plus guidé au plus proche de la relecture réelle. <b>Une fois un atelier validé, vos réponses sont figées</b> et la correction s'affiche : lisez-la avant de passer au suivant. Vous pouvez recommencer l'exercice entier à tout moment, ce qui remet tout à zéro. Aucun résultat n'est transmis : c'est un entraînement.</div>
+<div class="enc ci"><span class="t">CE QUE VOUS POUVEZ GARDER SOUS LES YEUX</span>La fiche mémo du module. Le but n'est pas de deviner, mais d'appliquer la méthode jusqu'à ce qu'elle devienne un réflexe.</div>
+</div>
+
+<div id="ateliers"></div>
+<div id="final"></div>
+
+<div class="barre sticky">
+ <button class="btn sec" id="rejouer">↻ Recommencer l'exercice</button>
+ <span style="font-size:13px;color:var(--gris-moyen)">Le rejeu efface toutes les réponses et les corrections.</span>
+</div>
+
+<footer>TMK Performances - N° Siret : 49841924100027 - Code NAF : 8559A</footer>
+</div>
+<script>
+const EX = [
+ {
+  "titre": "Atelier 1 — Quel écrit choisir ?",
+  "sub": "Canal · 6 situations",
+  "consigne": "Pour chaque situation, choisissez l'écrit le plus adapté.",
+  "champs": [
+   {
+    "id": "a0q0",
+    "lb": "Rappeler à un client son rendez-vous de demain à 14 h.",
+    "options": [
+     "Un SMS",
+     "Une lettre",
+     "Un compte rendu",
+     "Une note de synthèse"
+    ],
+    "rep": 0,
+    "pts": 1
+   },
+   {
+    "id": "a0q1",
+    "lb": "Transmettre à un client la liste des six justificatifs à fournir pour l'étude de son crédit.",
+    "options": [
+     "Un SMS",
+     "Un mail avec une liste à puces",
+     "Un message sur le chat, en une ligne",
+     "Un compte rendu"
+    ],
+    "rep": 1,
+    "pts": 1
+   },
+   {
+    "id": "a0q2",
+    "lb": "Remettre à un client les documents contractuels de son crédit.",
+    "options": [
+     "Un SMS",
+     "Un message sur le chat",
+     "Une remise en agence ou un courrier",
+     "Un mail avec le numéro de compte en clair"
+    ],
+    "rep": 2,
+    "pts": 1
+   },
+   {
+    "id": "a0q3",
+    "lb": "Garder au dossier la trace de l'entretien et des vérifications faites.",
+    "options": [
+     "Un SMS au client",
+     "Un mail au client",
+     "Une lettre au client",
+     "Un compte rendu d'entretien"
+    ],
+    "rep": 3,
+    "pts": 1
+   },
+   {
+    "id": "a0q4",
+    "lb": "Une cliente pose une question dans le chat de son espace client.",
+    "options": [
+     "Lui répondre dans le chat",
+     "Lui envoyer une lettre",
+     "Lui répondre par SMS",
+     "Ne pas répondre et attendre son appel"
+    ],
+    "rep": 0,
+    "pts": 1
+   },
+   {
+    "id": "a0q5",
+    "lb": "Informer un client qu'il va recevoir par courrier sa nouvelle carte.",
+    "options": [
+     "Un compte rendu",
+     "Un mail ou un SMS qui annonce l'envoi",
+     "Une note de synthèse",
+     "Une lettre recommandée"
+    ],
+    "rep": 1,
+    "pts": 1
+   }
+  ]
+ },
+ {
+  "titre": "Atelier 2 — Quel est l'objectif principal ?",
+  "sub": "Objectif · 6 extraits",
+  "consigne": "Lisez l'extrait et choisissez l'objectif principal de l'écrit.",
+  "champs": [
+   {
+    "id": "a1q0",
+    "lb": "« Je vous confirme notre rendez-vous du mardi 25 novembre à 10 h, à l'agence de Wasquehal. »",
+    "options": [
+     "Demander",
+     "S'excuser",
+     "Proposer",
+     "Confirmer"
+    ],
+    "rep": 3,
+    "pts": 1
+   },
+   {
+    "id": "a1q1",
+    "lb": "« Pour étudier votre demande, merci de nous transmettre vos trois derniers bulletins de salaire. »",
+    "options": [
+     "Demander",
+     "Informer",
+     "Confirmer",
+     "Remercier"
+    ],
+    "rep": 0,
+    "pts": 1
+   },
+   {
+    "id": "a1q2",
+    "lb": "« Votre nouvelle carte vous sera adressée sous huit jours ; votre code suivra par un courrier séparé. »",
+    "options": [
+     "Demander",
+     "Informer",
+     "Proposer",
+     "Relancer"
+    ],
+    "rep": 1,
+    "pts": 1
+   },
+   {
+    "id": "a1q3",
+    "lb": "« Les deux frais que vous contestez correspondent à des opérations passées alors que votre compte n'était pas suffisamment approvisionné. »",
+    "options": [
+     "Proposer un produit",
+     "Confirmer un rendez-vous",
+     "Répondre à une réclamation",
+     "Demander un justificatif"
+    ],
+    "rep": 2,
+    "pts": 1
+   },
+   {
+    "id": "a1q4",
+    "lb": "« Je peux vous recevoir jeudi à 9 h 30 ou vendredi à 16 h : quel créneau vous convient ? »",
+    "options": [
+     "Informer",
+     "Confirmer",
+     "Remercier",
+     "Proposer"
+    ],
+    "rep": 3,
+    "pts": 1
+   },
+   {
+    "id": "a1q5",
+    "lb": "« Sauf erreur de notre part, nous n'avons pas encore reçu votre justificatif de domicile, demandé le 12 novembre. »",
+    "options": [
+     "Relancer",
+     "Remercier",
+     "Proposer",
+     "Confirmer"
+    ],
+    "rep": 0,
+    "pts": 1
+   }
+  ]
+ },
+ {
+  "titre": "Atelier 3 — Vrai ou faux ?",
+  "sub": "Usages et limites · 6 affirmations",
+  "consigne": "Indiquez si l'affirmation est vraie ou fausse.",
+  "champs": [
+   {
+    "id": "a2q0",
+    "lb": "Le mail est confidentiel : on peut y indiquer un code de carte s'il est urgent de le transmettre.",
+    "options": [
+     "Faux",
+     "Vrai"
+    ],
+    "rep": 0,
+    "pts": 1
+   },
+   {
+    "id": "a2q1",
+    "lb": "Le SMS est le seul écrit professionnel qui tolère les abréviations.",
+    "options": [
+     "Faux",
+     "Vrai"
+    ],
+    "rep": 1,
+    "pts": 1
+   },
+   {
+    "id": "a2q2",
+    "lb": "Un mail peut annoncer l'envoi de documents par courrier.",
+    "options": [
+     "Vrai",
+     "Faux"
+    ],
+    "rep": 0,
+    "pts": 1
+   },
+   {
+    "id": "a2q3",
+    "lb": "Un message sur le chat peut être corrigé après envoi sans que le client le voie.",
+    "options": [
+     "Vrai",
+     "Faux"
+    ],
+    "rep": 1,
+    "pts": 1
+   },
+   {
+    "id": "a2q4",
+    "lb": "Un écrit peut poursuivre deux objectifs, à condition de les annoncer clairement.",
+    "options": [
+     "Vrai",
+     "Faux"
+    ],
+    "rep": 0,
+    "pts": 1
+   },
+   {
+    "id": "a2q5",
+    "lb": "Le compte rendu d'entretien est destiné au client.",
+    "options": [
+     "Vrai",
+     "Faux"
+    ],
+    "rep": 1,
+    "pts": 1
+   }
+  ]
+ }
+];
+
+const TOTAL = EX.reduce((s,a)=>s+a.champs.reduce((t,c)=>t+c.pts,0),0);
+const etat = EX.map(()=>({valide:false,score:0}));
+
+function phrase(lb){ return lb.replace('…','<span class="trou">…</span>'); }
+
+function rendre(){
+  document.getElementById('ateliers').innerHTML = EX.map((a,i)=>{
+    const pts = a.champs.reduce((t,c)=>t+c.pts,0);
+    return `
+    <h2><span class="num">${i+1} ·</span>${a.titre}</h2>
+    <div class="carte" id="at${i}">
+      <p style="font-size:14.5px;color:var(--gris-moyen);margin-top:0">${a.sub}</p>
+      <div class="situ">${a.consigne}</div>
+      ${a.champs.map(c=>`
+        <div class="champ" id="ch_${c.id}">
+          <span class="phrase">${phrase(c.lb)}</span>
+          <select class="ch" id="${c.id}"><option value="">— choisir —</option>${c.options.map((o,j)=>`<option value="${j}">${o}</option>`).join('')}</select>
+          <span class="pts">${c.pts} pt</span>
+          <span class="verdict" id="v_${c.id}"></span>
+        </div>`).join('')}
+      <div class="barre">
+        <button class="btn" id="btn${i}">Valider l'atelier ${i+1}</button>
+        <span class="pts">Atelier noté sur ${pts} points</span>
+        <span id="fige${i}"></span>
+      </div>
+    </div>`;
+  }).join('');
+  EX.forEach((a,i)=>document.getElementById('btn'+i).addEventListener('click',()=>valider(i)));
+}
+
+function valider(i){
+  if(etat[i].valide) return;
+  const a = EX[i];
+  // contrôle de complétude AVANT toute correction
+  for(const c of a.champs){
+    const el = document.getElementById(c.id);
+    if(el.value===''){ alert("Répondez à toutes les phrases de l'atelier avant de valider."); el.focus(); return; }
+  }
+  let score = 0;
+  a.champs.forEach(c=>{
+    const el = document.getElementById(c.id);
+    const juste = parseInt(el.value,10) === c.rep;
+    if(juste) score += c.pts;
+    el.disabled = true;
+    document.getElementById('ch_'+c.id).classList.add(juste?'just':'faux');
+    const v = document.getElementById('v_'+c.id);
+    v.className = 'verdict ' + (juste?'ok':'ko');
+    v.textContent = juste ? '✓ juste' : '✗ attendu : ' + c.options[c.rep];
+  });
+  etat[i] = {valide:true, score:score};
+  const b = document.getElementById('btn'+i);
+  b.textContent = 'Atelier validé'; b.disabled = true;
+  document.getElementById('fige'+i).innerHTML = '<span class="fige">Réponses figées</span>';
+  bilan();
+}
+
+function bilan(){
+  const faits = etat.filter(e=>e.valide).length;
+  if(faits < EX.length){
+    document.getElementById('final').innerHTML =
+      `<div class="carte"><div class="enc"><span class="t">AVANCEMENT</span>${faits} atelier${faits>1?'s':''} sur ${EX.length} validé${faits>1?'s':''}.</div></div>`;
+    return;
+  }
+  const s = etat.reduce((t,e)=>t+e.score,0);
+  const pct = Math.round(s/TOTAL*100);
+  let mot;
+  if(pct>=90) mot = "Vous choisissez l'écrit et l'objectif sans hésiter. Vous pouvez passer au QCM du module.";
+  else if(pct>=70) mot = "L'essentiel est en place. Relisez la fiche mémo pour l'atelier le moins réussi, puis passez au QCM.";
+  else if(pct>=50) mot = "Revoyez le tableau des écrits et celui des objectifs dans la fiche mémo, puis refaites l'exercice.";
+  else mot = "Reprenez l'exemple commenté du dossier de M. Moreau et la fiche mémo avant de refaire l'exercice.";
+  document.getElementById('final').innerHTML = `
+   <h2><span class="num">${EX.length+1} ·</span>Votre bilan</h2>
+   <div class="score"><span class="gros">${s} / ${TOTAL}</span><span class="lib">${pct} % — ${EX.length} ateliers traités</span></div>
+   <div class="carte">
+    <table><thead><tr><th>Atelier</th><th>Points</th></tr></thead><tbody>
+    ${EX.map((a,i)=>`<tr><td>${a.titre}</td><td class="n">${etat[i].score} / ${a.champs.length}</td></tr>`).join('')}
+    <tr class="tot"><td>Total</td><td class="n">${s} / ${TOTAL}</td></tr>
+    </tbody></table>
+    <div class="enc"><span class="t">CE QUE VOUS EN FAITES</span>${mot}</div>
+    <div class="enc ci"><span class="t">LES TROIS RÉFLEXES DE LA SÉQUENCE</span>① Avant d'écrire : « après lecture, le client doit… ». ② Le mail est polyvalent mais non confidentiel. ③ Jamais de code ni de numéro complet dans un SMS, un chat ou un mail.</div>
+   </div>`;
+}
+
+document.getElementById('rejouer').addEventListener('click',()=>{ location.reload(); });
+rendre();
+</script>
+</body></html>
